@@ -5,6 +5,7 @@ import { connectDB }  from "./config/db.js";
 import errorMiddelware from './middelwares/errorMiddelware.js';
 import authRoute from "./routes/authRoutes.js"
 import taskRoute from "./routes/taskRoutes.js"
+import userRoute from "./routes/userRoutes.js"
 import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./config/swagger.js";
 connectDB();
@@ -19,6 +20,7 @@ app.use(express.json())
 app.use("/api/auth",authRoute)
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 app.use("/api/task",taskRoute)
+app.use("/api/user",userRoute)
 
 app.use(errorMiddelware);
 
