@@ -11,9 +11,9 @@ router.post("/create",protect , createTask);
 
 router.get('/get',protect,getTask);
 
-router.delete('/delete/:id',protect,deletTask);
+router.delete('/delete/:id',protect ,deletTask);
 
-router.put("/update/:id",protect,updateTask);
+router.put("/update/:id",protect ,updateTask);
 
 
 export default router;
