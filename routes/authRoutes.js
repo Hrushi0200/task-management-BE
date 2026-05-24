@@ -2,8 +2,10 @@
 
 import express from "express"
 import { loginUser, registerUser } from "../controllers/authController.js";
+import { loginValidation, registerValidation } from "../validator/authValidator.js";
+import { validate } from "../middelwares/validateMiddelware.js";
 
-const router=express.Router();
+const router = express.Router();
 
 /**
  * @swagger
@@ -31,7 +33,7 @@ const router=express.Router();
  *       400:
  *         description: All fields are required
  */
-router.post("/register",registerUser);
+router.post("/register", registerValidation, validate, registerUser);
 
 /**
  * @swagger
@@ -57,7 +59,7 @@ router.post("/register",registerUser);
  *       400:
  *         description: Invalid credentials
  */
-router.post("/login",loginUser);
+router.post("/login",loginValidation,validate, loginUser);
 
 export default router;
 
