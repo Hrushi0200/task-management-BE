@@ -11,7 +11,7 @@ export const registerValidation=[
 
 export const loginValidation=[
 
-    body("emial").isEmail().withMessage("Email must be a valid "),
+    body("email").isEmail().withMessage("Email must be a valid"),
 
     body("password").isLength({min:6}).withMessage("Password should be at least 6 character long.")
 
