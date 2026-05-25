@@ -6,6 +6,8 @@ export const createTask=async(req,res)=>{
  
     const{ title, description, status, priority, dueDate }=req.body;
 
+
+
      if (!title) {
         return res.status(400).json({
             success: false,
@@ -31,10 +33,18 @@ export const createTask=async(req,res)=>{
 
 export const getTask=async(req,res)=>{
 
-    const tasks=await getAllTaskService(req.user._id);
+    const page=Number(req.query.page)||1;
+    const limit=Number(req.query.limit) || 1;
+
+    const search =req.query.search;
+    const status=req.query.status;
+    const priority=req.query.priority;
+    const sort=req.query.sort;
+
+    const result=await getAllTaskService(req.user._id,page,limit,search,status,priority,sort);
     res.status(200).json({
         success:true,
-        data:tasks,
+        ...result,
     })
 }
 
