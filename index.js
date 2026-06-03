@@ -10,7 +10,7 @@ import swaggerUi from "swagger-ui-express";
 import swaggerSpec from "./config/swagger.js";
 connectDB();
 dotenv.config();
-const PORT=process.env.PORT;
+const PORT=process.env.PORT||5000;
 //creating app
 const app=express();
 
