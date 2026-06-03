@@ -9,4 +9,5 @@ router.get("/get",protect,getAllUser)
 
 router.put("/update/:id",protect,updateUser)
 
+
 export default router;
