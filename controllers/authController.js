@@ -3,15 +3,15 @@ import asyncHandeler from "../utils/asycHandler.js";
 import generateToken from "../utils/generateToken.js";
 
 export const registerUser = asyncHandeler(async (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password,role } = req.body;
 
-    if (!name || !email || !password) {
+    if (!name || !email || !password || !role) {
         return res.status(400).json({
             success: false,
             message: "All fileds are required"
         });
     }
-    const user = await registerService({ name, email, password });
+    const user = await registerService({ name, email, password ,role});
 
     return res.status(201).json({
         success: true,
@@ -20,6 +20,7 @@ export const registerUser = asyncHandeler(async (req, res) => {
             _id: user._id,
             name: user.name,
             email: user.email,
+            role:user.role,
             token: generateToken(user._id)
 
         }
@@ -47,6 +48,7 @@ export const loginUser=asyncHandeler(async(req,res)=>{
         _id:user._id,
         name:user.name, 
         email:user.email,
+        role:user.role,
         token:generateToken(user._id)
        }
     })

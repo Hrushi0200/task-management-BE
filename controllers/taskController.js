@@ -1,4 +1,4 @@
-import { createTaskService, deletTaskService, getAllTaskService, updateTaskService } from "../services/taskService.js";
+import { createTaskService, deletTaskService, getAllTaskService, getTaskService, updateTaskService } from "../services/taskService.js";
 import asyncHandeler from "../utils/asycHandler.js";
 
 
@@ -41,10 +41,19 @@ export const getTask=async(req,res)=>{
     const priority=req.query.priority;
     const sort=req.query.sort;
 
-    const result=await getAllTaskService(req.user._id,page,limit,search,status,priority,sort);
+    const result=await getTaskService(req.user._id,page,limit,search,status,priority,sort);
     res.status(200).json({
         success:true,
         ...result,
+    })
+}
+
+export const getAllTask=async(req,res)=>{
+    const tasks =await getAllTaskService();
+
+    res.status(200).json({
+        success:true,
+        data:tasks
     })
 }
 

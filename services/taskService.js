@@ -8,7 +8,7 @@ export const createTaskService = async (task) => {
     return tasks;
 }
 
-export const getAllTaskService = async (userId, page, limit, search, status, priority, sort) => {
+export const getTaskService = async (userId, page, limit, search, status, priority, sort) => {
     const skip = (page - 1) * limit;
 
     const query = {
@@ -44,6 +44,13 @@ export const getAllTaskService = async (userId, page, limit, search, status, pri
     const tasks = await Task.find(query).sort(sortOption).skip(skip).limit(limit).populate("user", "name email");
 
     return { tasks, page, totalPages: Math.ceil(total / limit), total };
+}
+
+export const getAllTaskService=async ()=>{
+
+    const tasks =await Task.find().populate('user','name email role');
+
+    return tasks
 }
 
 export const updateTaskService = async (taskId, userId, updateData) => {
